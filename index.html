@@ -1,1 +1,43 @@
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Telegram Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 20px;
+      background: var(--tg-theme-bg-color);
+      color: var(--tg-theme-text-color);
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, Telegram Mini App!</h1>
+  <p id="user-data">Loading user data...</p>
+  
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // Full Screen ဖွင့်မယ်
+
+    // User Data ပြမယ်
+    const user = tg.initDataUnsafe.user;
+    if (user) {
+      document.getElementById("user-data").innerHTML = `
+        User ID: ${user.id}<br>
+        Name: ${user.first_name}<br>
+        Username: @${user.username}
+      `;
+    }
+
+    // Main Button ထည့်မယ်
+    tg.MainButton.setText("SEND TO BOT");
+    tg.MainButton.show();
+    tg.MainButton.onClick(() => {
+      tg.sendData("Hello from WebApp!");
+      tg.close();
+    });
+  </script>
+</body>
+</html>
