@@ -1,10 +1,6 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
-  background-color: #f1f1f1;
-}
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-}
+let tg = window.Telegram.WebApp;
+tg.expand(); // Full screen
+
+document.getElementById("btn").addEventListener("click", () => {
+  tg.sendData("You clicked the button!"); // Send data back to bot
+});
